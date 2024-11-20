@@ -1,7 +1,6 @@
-from selenium.common import NoSuchElementException
-from selenium.webdriver.remote.webdriver import WebDriver
 from time import sleep
 
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
