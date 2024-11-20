@@ -17,7 +17,7 @@ class BasePage:
         self.driver.refresh()
 
     def wait_for_element_to_be_visible(self, element, timeout: WaitTimes = WaitTimes.WEB_ELEMENT_TIMEOUT):
-        WebDriverWait(self.driver, timeout.value).until(expected_conditions.presence_of_element_located(element))
+        WebDriverWait(self.driver, timeout.value).until(expected_conditions.visibility_of_element_located(element))
 
     def type_text(self, element, text):
         for char in text:

@@ -2,6 +2,7 @@ import os
 
 import pytest
 
+from pages.drive_with_lyft_page import DriveWithLyftPage
 from pages.driver_cities_page import DriverCitiesPage
 from utils.webdriver_helpers import get_webdriver
 
@@ -25,3 +26,7 @@ def driver(config):
 @pytest.fixture()
 def cities_page(driver):
     return DriverCitiesPage(driver)
+
+@pytest.fixture()
+def drive_with_lyft_page(driver):
+    return DriveWithLyftPage(driver)
