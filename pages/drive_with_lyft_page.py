@@ -1,14 +1,15 @@
 from pages.base_page import BasePage
 from utils.check_actions import is_element_present
-from utils.selenium_selectors import css, xpath
+from utils.enums import Button, Messages
+from utils.selenium_selectors import css, xpath, generic_button
 
 
 class DriveWithLyftPage(BasePage):
     FIRST_NAME_FIELD = css("[name='firstName']")
     LAST_NAME_FIELD = css("[name='lastName']")
     EMAIL_FIELD = css("[name='email']")
-    INVALID_PHONE_NUMBER_MESSAGE = xpath("//*[@data-testid='core-ui-text'][.='Error submitting form: Please enter a valid phone number.']")
-    SUBMIT_BUTTON = xpath("//button//span[text()='Submit']")
+    INVALID_PHONE_NUMBER_MESSAGE = xpath(f"//*[@data-testid='core-ui-text'][.='{Messages.INVALID_PHONE_NUMBER_MESSAGE}']")
+    SUBMIT_BUTTON = generic_button(Button.SUBMIT)
 
     def apply_to_drive(self, first_name, last_name, email):
         self.wait_for_element_to_be_visible(self.FIRST_NAME_FIELD)

@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
-from utils.selenium_selectors import xpath, css
+from utils.enums import Button
+from utils.selenium_selectors import xpath, css, generic_button
 
 
 class DriverCitiesPage(BasePage):
@@ -8,7 +9,7 @@ class DriverCitiesPage(BasePage):
     SEARCH_OPTION = xpath("//ul[@role='listbox']/li[@role='option']")
     PHONE_FIELD = xpath("//input[@data-testid='phone']")
     AGREE_TO_TERMS_CHECKBOX = css("input[name='tos']")
-    APPLY_TO_DRIVER_BUTTON = xpath("//button//span[text()='Apply to drive']")
+    APPLY_TO_DRIVER_BUTTON = generic_button(Button.APPLY_TO_DRIVE)
 
     def go_to_cities_page(self):
         self.driver.find_element(*self.CITIES_FOOTER_BUTTON).click()

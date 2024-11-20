@@ -6,3 +6,6 @@ def xpath(selector: str):
 
 def css(selector: str):
     return By.CSS_SELECTOR, selector
+
+def generic_button(text):
+    return xpath(f"//*[text()='{text}']/ancestor::button")
