@@ -2,7 +2,8 @@ import os
 
 import pytest
 
-from clients.account_client import AccountClient
+from clients.bookstore.account_client import AccountClient
+from clients.marketplace.marketplace_client import Marketplace
 from pages.demoqa.bookstore_page import BookstorePage
 from pages.home_page import HomePage
 from pages.sign_up_page import SignUpPage
@@ -44,3 +45,8 @@ def bookstore(driver, config):
     page = BookstorePage(driver)
     page.driver.get(f'{config['bookstore_url']}/login')
     return page, AccountClient(config['bookstore_url'])
+
+
+@pytest.fixture()
+def marketplace(config):
+    return Marketplace(config['marketplace_url'])
