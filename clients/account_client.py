@@ -4,9 +4,10 @@ from utils.paths import Account
 
 
 class AccountClient(BaseClient):
-    def __init__(self, bookstore_url):
-        super().__init__()
-        self.account_url = f'{bookstore_url}/Account/v1'
+    def __init__(self, base_url):
+        api_url = base_url + Account.api_url
+        super().__init__(api_url)
+
 
     def generate_login_cookies(self, user_name, password):
         payload = get_auth_payload(user_name, password)
