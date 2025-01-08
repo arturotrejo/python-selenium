@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 from utils.check_actions import is_element_present
 from utils.selenium_selectors import css
-from utils.session_helpers import set_up_session_cookies
+from utils.client_helpers import set_up_session_cookies
 
 
 class BookstorePage(BasePage):

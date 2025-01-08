@@ -9,3 +9,7 @@ def set_up_session_cookies(driver, expires_value, token_value, user_id_value, us
 
     for cookie in cookies:
         driver.add_cookie(cookie)
+
+
+def get_auth_payload(user_name, password):
+    return {'userName': user_name, 'password': password}
