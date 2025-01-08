@@ -1,4 +1,6 @@
 from clients.base_client import BaseClient
+from utils.client_helpers import get_auth_payload
+from utils.paths import Account
 
 
 class AccountClient(BaseClient):
@@ -7,13 +9,10 @@ class AccountClient(BaseClient):
         self.account_url = f'{bookstore_url}/Account/v1'
 
     def generate_login_cookies(self, user_name, password):
-        generate_token_url = f'{self.account_url}/GenerateToken'
-        login_url = f'{self.account_url}/Login'
+        payload = get_auth_payload(user_name, password)
 
-        payload = {'userName': user_name, 'password': password}
-
-        generate_token_response = self.request.post(generate_token_url, json=payload, headers=self.headers)
-        login_response = self.request.post(login_url, json=payload, headers=self.headers)
+        generate_token_response = self.request.post(Account.generate_token, payload)
+        login_response = self.request.post(Account.login, payload)
 
         expires = generate_token_response.as_dict['expires'].replace(':', '%3A')
         token = login_response.as_dict['token']
