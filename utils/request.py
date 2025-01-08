@@ -1,12 +1,6 @@
 import requests
-from attr import dataclass
 
-
-@dataclass
-class Response:
-    headers: dict
-    status_code: int
-    as_dict: object
+from utils.response import Response
 
 
 class APIRequest:
