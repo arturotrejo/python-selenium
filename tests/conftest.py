@@ -14,7 +14,8 @@ def config():
     configs = {
         'base_url': os.getenv('BASE_URL'),
         'bookstore_url': os.getenv('BOOKSTORE_URL'),
-        'browser': os.getenv('BROWSER')
+        'browser': os.getenv('BROWSER'),
+        'marketplace_url': os.getenv('MARKETPLACE_URL'),
     }
     return configs
 
