@@ -19,6 +19,7 @@ def config():
     }
     return configs
 
+
 @pytest.fixture()
 def driver(config):
     driver = get_webdriver(config['browser'])
@@ -27,13 +28,16 @@ def driver(config):
     yield driver
     driver.quit()
 
+
 @pytest.fixture()
 def home_page(driver):
     return HomePage(driver)
 
+
 @pytest.fixture()
 def sign_up_page(driver):
     return SignUpPage(driver)
+
 
 @pytest.fixture()
 def bookstore(driver, config):
