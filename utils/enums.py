@@ -9,4 +9,5 @@ class Messages:
     INVALID_PHONE_NUMBER_MESSAGE = 'Error submitting form: Please enter a valid phone number.'
 
 class WaitTimes(Enum):
+    SHORT_TIMEOUT = 1
     WEB_ELEMENT_TIMEOUT = 10
