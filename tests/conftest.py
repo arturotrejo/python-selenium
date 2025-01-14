@@ -2,8 +2,11 @@ import os
 
 import pytest
 
-from pages.drive_with_lyft_page import DriveWithLyftPage
-from pages.driver_cities_page import DriverCitiesPage
+from clients.bookstore.account_client import AccountClient
+from clients.marketplace.marketplace_client import Marketplace
+from pages.demoqa.bookstore_page import BookstorePage
+from pages.home_page import HomePage
+from pages.sign_up_page import SignUpPage
 from utils.webdriver_helpers import get_webdriver
 
 
@@ -11,9 +14,12 @@ from utils.webdriver_helpers import get_webdriver
 def config():
     configs = {
         'base_url': os.getenv('BASE_URL'),
-        'browser': os.getenv('BROWSER')
+        'bookstore_url': os.getenv('BOOKSTORE_URL'),
+        'browser': os.getenv('BROWSER'),
+        'marketplace_url': os.getenv('MARKETPLACE_URL'),
     }
     return configs
+
 
 @pytest.fixture()
 def driver(config):
@@ -23,10 +29,24 @@ def driver(config):
     yield driver
     driver.quit()
 
-@pytest.fixture()
-def cities_page(driver):
-    return DriverCitiesPage(driver)
 
 @pytest.fixture()
-def drive_with_lyft_page(driver):
-    return DriveWithLyftPage(driver)
+def home_page(driver):
+    return HomePage(driver)
+
+
+@pytest.fixture()
+def sign_up_page(driver):
+    return SignUpPage(driver)
+
+
+@pytest.fixture()
+def bookstore(driver, config):
+    page = BookstorePage(driver)
+    page.driver.get(f'{config['bookstore_url']}/login')
+    return page, AccountClient(config['bookstore_url'])
+
+
+@pytest.fixture()
+def marketplace(config):
+    return Marketplace(config['marketplace_url'])
